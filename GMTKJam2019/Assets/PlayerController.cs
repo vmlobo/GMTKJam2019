@@ -16,13 +16,13 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0);
         transform.position += movement * Time.deltaTime * speed;
-        //crosshair.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);   
-
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        crosshair.position = new Vector3(mousePos.x, mousePos.y, -5);
         
         
 
