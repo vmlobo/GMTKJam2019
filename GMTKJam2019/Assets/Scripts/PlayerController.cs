@@ -6,11 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     public float hp = 100f;
     public float speed = 10f;
-    public bool facingRight = true;
     public float bullet_speed = 20;
     private float player_ammo = 6;
 
-    public Transform player;
     public Transform crosshair;
     public Transform weapon_transform;
     public Transform weaponBarrel;
@@ -20,6 +18,9 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     public GameObject bulletPrefab;
+
+    private bool idleTest;
+    private bool movingRightTest; 
 
     private AudioSource gunshot;
     private CircleCollider2D circleCollider;
@@ -55,23 +56,28 @@ public class PlayerController : MonoBehaviour
         transform.position += movement * Time.deltaTime * speed;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        crosshair.position = new Vector3(mousePos.x, mousePos.y, -5);
+        
+        idleTest = Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0f;
+        movingRightTest = Input.GetAxis("Horizontal") > 0.01f;
 
-        //transform.up = crosshair.position - player.position; //TODO should player rotate
+        animator.SetBool("idle", Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0f);
+        animator.SetBool("movingUp", Input.GetAxis("Vertical") > 0.01f );
+        animator.SetBool("movingDown", Input.GetAxis("Vertical") < -0.01f );
+        animator.SetBool("movingRight", Input.GetAxis("Horizontal") > 0.01f);
+        animator.SetBool("movingLeft", Input.GetAxis("Horizontal") < -0.01f);
+
+        crosshair.position = new Vector3(mousePos.x, mousePos.y, -5);
         weapon_transform.right = -(crosshair.position - weapon_transform.position); //-weapon barrel.pos TODO
 
-        if (movement.x < 0)
-        {
-            facingRight = false;
+        if (!movingRightTest && !idleTest)
             sr.flipX = true;
-        } else
-        {
-            facingRight = true;
+        else
             sr.flipX = false;
+        
+        if(Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0f)
+        {
+            animator.StopPlayback();
         }
-
-        animator.SetFloat("moveSpeed", movement.magnitude);
-
 
         if (Input.GetButtonDown("Fire1") && !ps.isPlaying && player_ammo > 0)
         {
@@ -85,7 +91,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("pew");
         Vector3 shotDir = (crosshair.transform.position - weaponBarrel.position).normalized;
         GameObject bullet = Instantiate(bulletPrefab, weaponBarrel.position, Quaternion.FromToRotation(Vector3.right,shotDir));
-        bullet.GetComponent<Rigidbody2D>().velocity = shotDir * bullet_speed; //TODO * timedeltatime?
+        bullet.GetComponent<Rigidbody2D>().velocity = shotDir * bullet_speed; //* timedeltatime?
         gunshot.Play();
         ps.Play();
         

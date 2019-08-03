@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
 
     private ParticleSystem ps;
     private CapsuleCollider2D capsuleCollider;
+    public SpriteRenderer sr;
 
 
 
@@ -23,12 +24,9 @@ public class EnemyController : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider2D>(); 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) //TODO se bullet for trigger tem que ser on trigger enter
+    private void OnCollisionEnter2D(Collision2D collision) //se bullet for trigger tem que ser on trigger enter
     {
-
-       
-
-        if (collision.transform.tag == "bullet") //colisao das balas e morte aqui TODO
+        if (collision.transform.tag == "bullet")
         {
             Debug.Log("bullet hit enemy");
             ps.Play();
@@ -36,7 +34,7 @@ public class EnemyController : MonoBehaviour
             //TODO particles/sound when hit?
             if (!ps.isPlaying)
                 Destroy(this.gameObject);
-            Destroy(collision.gameObject); //TODO disable ou destroy bullet
+            Destroy(collision.gameObject); //disable ou destroy bullet
         }
     }
 
@@ -45,22 +43,19 @@ public class EnemyController : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position,player.position,speed * Time.deltaTime);
 
-        /* if (movement.x < 0)
+        if (transform.position.x <player.position.x)
         {
-            facingRight = false;
             sr.flipX = true;
         }
         else
         {
-            facingRight = true;
             sr.flipX = false;
-        } */ //TODO flip enemy
-       
+        } 
 
         if (hp <= 0)
         {
-            Debug.Log("enemy ded");
-            //TODO
+            //Debug.Log("enemy ded");
+            //TODO enemy death
             speed = 0;
               
         }
