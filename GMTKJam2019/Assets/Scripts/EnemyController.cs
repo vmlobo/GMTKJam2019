@@ -43,7 +43,19 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector2.MoveTowards(transform.position,player.position,speed*Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position,player.position,speed * Time.deltaTime);
+
+        /* if (movement.x < 0)
+        {
+            facingRight = false;
+            sr.flipX = true;
+        }
+        else
+        {
+            facingRight = true;
+            sr.flipX = false;
+        }/* TODO flip enemy
+       
 
         if (hp <= 0)
         {

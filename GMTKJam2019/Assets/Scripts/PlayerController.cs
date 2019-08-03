@@ -57,8 +57,8 @@ public class PlayerController : MonoBehaviour
 
         crosshair.position = new Vector3(mousePos.x, mousePos.y, -5);
 
-        transform.up = crosshair.position - player.position; //-weapon barrel.pos TODO
-        weapon_transform.right = -(crosshair.position - weapon_transform.position);
+        //transform.up = crosshair.position - player.position; //TODO should player rotate
+        weapon_transform.right = -(crosshair.position - weapon_transform.position); //-weapon barrel.pos TODO
 
         if (movement.x < 0)
         {
