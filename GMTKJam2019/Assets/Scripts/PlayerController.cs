@@ -7,15 +7,20 @@ public class PlayerController : MonoBehaviour
     public float hp = 100f;
     public float speed = 10f;
     public bool facingRight = true;
+    public float bullet_speed = 20;
+
+
     public Transform player;
     public Transform crosshair;
+    public Transform weapon_transform;
+    public Transform weaponBarrel;
+
     public ParticleSystem ps;
     public SpriteRenderer sr;
-    public Transform weaponBarrel;
+
     public GameObject bulletPrefab;
 
     private CircleCollider2D circleCollider;
-
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +52,11 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0);
         transform.position += movement * Time.deltaTime * speed;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         crosshair.position = new Vector3(mousePos.x, mousePos.y, -5);
-        transform.up = crosshair.position - player.position;
+
+        transform.up = crosshair.position - player.position; //-weapon barrel.pos TODO
+        weapon_transform.right = -(crosshair.position - weapon_transform.position);
 
         if (movement.x < 0)
         {
@@ -62,10 +70,23 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1") && !ps.isPlaying)
         {
-            Debug.Log("pew)");
-            Instantiate(bulletPrefab, weaponBarrel.position, transform.rotation);
-            ps.Play();
+            Fire();
         }
 
     }
+
+    private void Fire()
+    {
+        //Debug.Log("pew");
+        Vector3 shotDir = (crosshair.transform.position - weaponBarrel.position).normalized;
+        GameObject bullet = Instantiate(bulletPrefab, weaponBarrel.position, Quaternion.FromToRotation(Vector3.right,shotDir));
+        bullet.GetComponent<Rigidbody2D>().velocity = shotDir * bullet_speed;
+        ps.Play();
+        
+        //TODO weapon sound
+        //TODO destroy(bullet,timetoDestruction)
+        //TODO bulletss colliding w player? should bullet be isTrigger
+        //TOOD wep in fronnt/side of the player
+    }
+
 }
