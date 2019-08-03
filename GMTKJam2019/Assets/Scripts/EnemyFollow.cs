@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AimScript : MonoBehaviour
+public class EnemyFollow : MonoBehaviour
 {
+
+    public Transform player;
+    public float speed;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +18,6 @@ public class AimScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = Vector2.MoveTowards(transform.position,player.position,speed * Time.deltaTime);
     }
 }
