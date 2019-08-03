@@ -149,6 +149,7 @@ Transform:
   m_LocalScale: {x: 0.22683, y: 0.22683, z: 0.22683}
   m_Children:
   - {fileID: 1996492540}
+  - {fileID: 227570866}
   m_Father: {fileID: 1788030799}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
@@ -286,6 +287,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &227570865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 227570866}
+  m_Layer: 0
+  m_Name: barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &227570866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227570865}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -1.55, y: 0.74, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3415908}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &396304085
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,6 +992,9 @@ MonoBehaviour:
   crosshair: {fileID: 396304086}
   ps: {fileID: 1996492542}
   sr: {fileID: 1582349434}
+  weaponBarrel: {fileID: 227570866}
+  bulletPrefab: {fileID: 243130725249217287, guid: 30fd528d28eba9b4a98671c0c7602800,
+    type: 3}
 --- !u!50 &1788030802
 Rigidbody2D:
   serializedVersion: 4
