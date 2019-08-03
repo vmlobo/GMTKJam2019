@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public bool facingRight = true;
     public Transform player;
     public Transform crosshair;
+    public ParticleSystem ps;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +24,13 @@ public class PlayerController : MonoBehaviour
         transform.position += movement * Time.deltaTime * speed;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         crosshair.position = new Vector3(mousePos.x, mousePos.y, -5);
-        
-        
+        transform.up = crosshair.position - player.position;
+
+        if(Input.GetMouseButtonDown(0) && !ps.isPlaying)
+        {
+            Debug.Log("pew)");
+            ps.Play();
+        }
 
     }
 }
