@@ -1152,7 +1152,7 @@ MonoBehaviour:
   ps: {fileID: 1996492542}
   sr: {fileID: 1788030804}
   animator: {fileID: 1788030805}
-  bulletPrefab: {fileID: 661330212046177890, guid: 30fd528d28eba9b4a98671c0c7602800,
+  bulletPrefab: {fileID: 2036321267881205602, guid: 30fd528d28eba9b4a98671c0c7602800,
     type: 3}
 --- !u!50 &1788030802
 Rigidbody2D:
