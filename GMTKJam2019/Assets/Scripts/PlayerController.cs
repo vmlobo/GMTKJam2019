@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("moveSpeed", movement.magnitude);
 
 
-        if (Input.GetButtonDown("Fire1") && !ps.isPlaying && player_ammo > 0 && !gunshot.isPlaying)
+        if (Input.GetButtonDown("Fire1") && !ps.isPlaying && player_ammo > 0)
         {
             Fire();
         }
