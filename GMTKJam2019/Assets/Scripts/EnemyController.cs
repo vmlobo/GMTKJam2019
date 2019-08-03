@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
 
+    //TODO bug overlap player no canto
+
     public Transform player;
     public float speed;
     public float hp = 50f;
@@ -22,9 +24,9 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "bullet")
+        if (collision.transform.tag == "bullet") //colisao das balas e morte aqui TODO
         {
-            Debug.Log("headshot");
+            Debug.Log("bullet hit");
             hp -= 50f;
         }
     }
@@ -37,6 +39,7 @@ public class EnemyController : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(this);
+            Debug.Log("enemy ded");
         }
 
     }

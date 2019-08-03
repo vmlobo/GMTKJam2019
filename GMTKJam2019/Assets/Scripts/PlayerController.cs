@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.transform.tag == "enemy") //TODO timeout immune
         {
-            Debug.Log("ouch");
+            Debug.Log("ouch hp: " + hp);
             hp -= 50f;
         }
     }
@@ -37,8 +37,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        //if( <= 0)
-        //lose TODO
+        if (hp <= 0)
+        {
+            Debug.Log("player dead"); //TODO morte do player
+        }
 
 
 
