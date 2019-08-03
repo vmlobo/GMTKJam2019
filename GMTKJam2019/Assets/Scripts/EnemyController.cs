@@ -43,11 +43,13 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector2.MoveTowards(transform.position,player.position,speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position,player.position,speed*Time.deltaTime);
 
         if (hp <= 0)
         {
             Debug.Log("enemy ded");
+            //TODO
+            speed = 0;
               
         }
 

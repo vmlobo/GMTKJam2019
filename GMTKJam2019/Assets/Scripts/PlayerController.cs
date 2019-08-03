@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 10f;
     public bool facingRight = true;
     public float bullet_speed = 20;
-
+    private float player_ammo = 6;
 
     public Transform player;
     public Transform crosshair;
@@ -17,16 +17,18 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem ps;
     public SpriteRenderer sr;
+    public Animator animator;
 
     public GameObject bulletPrefab;
 
+    private AudioSource gunshot;
     private CircleCollider2D circleCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
-        
+        gunshot = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -68,7 +70,10 @@ public class PlayerController : MonoBehaviour
             sr.flipX = false;
         }
 
-        if (Input.GetButtonDown("Fire1") && !ps.isPlaying)
+        animator.SetFloat("moveSpeed", movement.magnitude);
+
+
+        if (Input.GetButtonDown("Fire1") && !ps.isPlaying && player_ammo > 0 && !gunshot.isPlaying)
         {
             Fire();
         }
@@ -80,7 +85,8 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("pew");
         Vector3 shotDir = (crosshair.transform.position - weaponBarrel.position).normalized;
         GameObject bullet = Instantiate(bulletPrefab, weaponBarrel.position, Quaternion.FromToRotation(Vector3.right,shotDir));
-        bullet.GetComponent<Rigidbody2D>().velocity = shotDir * bullet_speed;
+        bullet.GetComponent<Rigidbody2D>().velocity = shotDir * bullet_speed; //TODO * timedeltatime?
+        gunshot.Play();
         ps.Play();
         
         //TODO weapon sound
