@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
         {
             facingRight = true;
             sr.flipX = false;
-        }/* TODO flip enemy
+        } */ //TODO flip enemy
        
 
         if (hp <= 0)
