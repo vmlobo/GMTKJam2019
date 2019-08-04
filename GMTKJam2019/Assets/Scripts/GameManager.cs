@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
     public EnemySpawner spawner;
     public bool isOver;
+    private AudioSource aSource;
 
     private Transform enemyList;
 
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     {
         wave = 1;
         animator = player.GetComponent<Animator>();
-
+        aSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -40,7 +41,6 @@ public class GameManager : MonoBehaviour
 
     private void waveUpdate()
     {
-        Debug.Log("score: " + score);
         spawner.spawnRandom(wave, player);
         wave += 1;
     }
@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
         {
             enemyList.GetChild(i).GetComponent<EnemyController>().speed = 0;
         }
+
+        aSource.Play(); ;
 
     }
 }

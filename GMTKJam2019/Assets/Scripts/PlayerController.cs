@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && player_ammo > 0) //can player fire
             Fire();
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") || Input.GetButtonDown("Jump"))
         {
             if (canPickup)
             {
