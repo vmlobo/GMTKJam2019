@@ -7,7 +7,10 @@ public class PlayerController : MonoBehaviour
     public float hp = 100f;
     public float speed = 10f;
     public float bullet_speed = 20;
-    private float player_ammo = 6;
+    private float player_ammo = 6; //TODO display ammo
+    public float playerImmuneTime = 3;
+    private float immuneTime;
+
 
     public Transform crosshair;
     public Transform weapon_transform;
@@ -20,26 +23,46 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
 
     private bool idleTest;
-    private bool movingRightTest; 
+    private bool movingRightTest;
+    private bool canPickup;
 
     private AudioSource gunshot;
-    private CircleCollider2D circleCollider;
+    private CapsuleCollider2D capsuleCollider;
+    private GameObject ammoPickup;
 
     // Start is called before the first frame update
     void Start()
     {
-        circleCollider = GetComponent<CircleCollider2D>();
+        immuneTime = 0;
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         gunshot = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.transform.tag == "enemy") //TODO timeout immune
+        if (collision.gameObject.layer == 11)
         {
-            Debug.Log("ouch hp: " + hp);
+            canPickup = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) //handle colisao com ammo no chao
+    {
+        Debug.Log(collision.gameObject);
+
+        if (collision.gameObject.layer == 11)
+        {
+            canPickup = true;
+            ammoPickup = collision.gameObject; //TODO display ammo
+        }
+
+        if (collision.transform.tag == "enemy" && immuneTime <= 0) 
+        {
+            //Debug.Log("ouch hp: " + hp);
             hp -= 50f;
+            immuneTime = playerImmuneTime;//TODO display immunity
         }
     }
 
@@ -47,18 +70,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (hp <= 0)
-        {
-            Debug.Log("player dead"); //TODO morte do player
-        }
-
-
-
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0);
         transform.position += movement * Time.deltaTime * speed;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        
         idleTest = Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0f;
         movingRightTest = Input.GetAxis("Horizontal") > 0.01f;
 
@@ -71,14 +86,25 @@ public class PlayerController : MonoBehaviour
         crosshair.position = new Vector3(mousePos.x, mousePos.y, -5);
         weapon_transform.right = -(crosshair.position - weaponBarrel.position);
 
-        if (Input.GetAxis("Horizontal") < -0.01f) //movingleft
+        if (Input.GetAxis("Horizontal") < -0.01f) //should sprite be flipped
             sr.flipX = true;
         else
             sr.flipX = false;
+
+        if (immuneTime > 0) //is player immune TODO display
+            immuneTime -= Time.deltaTime;
         
-        if (Input.GetButtonDown("Fire1") && !ps.isPlaying && player_ammo > 0)
-        {
+        if (Input.GetButtonDown("Fire1") && !ps.isPlaying && player_ammo > 0) //can player fire
             Fire();
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (canPickup)
+            {
+                Debug.Log("player touching ammo");
+                player_ammo++; //TODO display ammo
+                Destroy(ammoPickup);
+            }
         }
 
     }
@@ -87,13 +113,13 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log("pew");
         Vector3 shotDir = (crosshair.transform.position - weaponBarrel.position).normalized;
-        GameObject bullet = Instantiate(bulletPrefab, weaponBarrel.position, Quaternion.FromToRotation(Vector3.right,shotDir));
+        GameObject bullet = Instantiate(bulletPrefab, new Vector3(weaponBarrel.position.x, weaponBarrel.position.y,3), Quaternion.FromToRotation(Vector3.right,shotDir));
         bullet.GetComponent<Rigidbody2D>().velocity = shotDir * bullet_speed; //* timedeltatime?
         gunshot.Play();
         ps.Play();
-        
+        player_ammo -= 1;
+        Destroy(bullet, 2f);
         //TODO weapon sound
-        //TODO destroy(bullet,timetoDestruction)
         //TODO bulletss colliding w player? should bullet be isTrigger
         //TOOD wep in fronnt/side of the player
     }
