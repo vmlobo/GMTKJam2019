@@ -37,11 +37,11 @@ public class EnemyController : MonoBehaviour
             hp -= 50f;
             if (hp <= 0)
             {
-                if(Random.Range(0.0f,1.0f) > 0.5f)
+                if(Random.Range(0.0f,1.0f) > 0.5f) //TODO check odds
                 {
                     GameObject newBullet;
                     collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                    newBullet = Instantiate(bulletPrefab,collision.gameObject.transform.position,gameObject.transform.rotation);//TODO fica smp de lado
+                    newBullet = Instantiate(bulletPrefab,collision.gameObject.transform.position,new Quaternion(0,0,Random.rotation.z,0));
                     newBullet.transform.parent = GameObject.Find("bullet_pool").transform;
                     Destroy(collision.gameObject);
                 }
