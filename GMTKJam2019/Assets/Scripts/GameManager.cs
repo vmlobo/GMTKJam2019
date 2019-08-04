@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,12 +54,23 @@ public class GameManager : MonoBehaviour
 
         enemyList = GameObject.Find("EnemySpawner").transform;
 
-        for (int i = 0; i <= enemyList.childCount; i++)
+        for (int i = 0; i < enemyList.childCount; i++)
         {
             enemyList.GetChild(i).GetComponent<EnemyController>().speed = 0;
         }
 
+        Invoke("ResetScene", 2f);
+
         aSource.Play(); ;
 
+
     }
+
+    void ResetScene()
+    {
+        Debug.Log("resetting");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
 }
