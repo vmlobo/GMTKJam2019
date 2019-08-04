@@ -7,11 +7,13 @@ public class EnemyController : MonoBehaviour
 
     public float speed;
     public float hp = 50f;
+    public int score = 0;
     public GameObject bulletPrefab;
 
     private Transform player;
 
     private ParticleSystem ps;
+    private GameManager gmmanager;
     private CapsuleCollider2D capsuleCollider;
     private SpriteRenderer sr;
 
@@ -24,6 +26,7 @@ public class EnemyController : MonoBehaviour
         ps = GetComponent<ParticleSystem>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
+        gmmanager = GameObject.Find("World").GetComponent<GameManager>();
     }
 
    
@@ -45,7 +48,9 @@ public class EnemyController : MonoBehaviour
                     newBullet.transform.parent = GameObject.Find("bullet_pool").transform;
                     Destroy(collision.gameObject);
                 }
-                Destroy(gameObject); //TODO enemy death
+                Destroy(gameObject);
+                gmmanager.score++;
+                  
             }
 
             //TODO particles/sound when hit?

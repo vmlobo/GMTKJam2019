@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem ps;
     private SpriteRenderer sr;
-    public Animator animator;
+    private Animator animator;
 
     public GameObject bulletPrefab;
 
@@ -61,7 +61,8 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("ouch hp: " + hp);
             hp -= 50f;
             immuneTime = playerImmuneTime;
-            Debug.Log("playerHP: " + hp);//TODO display immunity
+
+           // Debug.Log("score: " );//TODO display immunity
         }
     }
 

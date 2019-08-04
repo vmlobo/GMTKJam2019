@@ -12,8 +12,10 @@ public class HUDController : MonoBehaviour
     private bool isDead;
 
     public GameObject waveNumber;
+    public GameObject ScoreNumber;
     public GameObject gameOverScreen;
     private PlayerController plrController;
+    private EnemyController enemycontroller; 
     public GameManager gmManager;
     public Transform[] bulletPosList;
 
@@ -30,14 +32,14 @@ public class HUDController : MonoBehaviour
         HealthSlider.value = plrController.hp;
         Debug.Log(bulletPosList.Length);
         for(int i = 0; i <= 5; i++)
-        {
-            //if(  && )
-            
+        {            
             
             bulletPosList[i].gameObject.SetActive(plrController.player_ammo >= i + 1);
         }
 
         waveNumber.GetComponent<TextMeshProUGUI>().text = (gmManager.wave-1).ToString();
+  
+        ScoreNumber.GetComponent<TextMeshProUGUI>().text = (gmManager.score).ToString();
 
         gameOverScreen.SetActive(gmManager.isOver);
 

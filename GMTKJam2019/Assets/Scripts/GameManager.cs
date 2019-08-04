@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
 
     public int wave;
+    public int score = 0;
 
     private Animator animator;
     public PlayerController player;
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void waveUpdate()
     {
-        Debug.Log("wave: " + wave);
+        Debug.Log("score: " + score);
         spawner.spawnRandom(wave, player);
         wave += 1;
     }
