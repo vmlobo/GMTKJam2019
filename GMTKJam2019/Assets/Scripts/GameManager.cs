@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public EnemySpawner spawner;
     public bool isOver;
 
+    private Transform enemyList;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,13 @@ public class GameManager : MonoBehaviour
         player.enabled = false;
         animator.enabled = false;
         isOver = true;
+
+        enemyList = GameObject.Find("EnemySpawner").transform;
+
+        for (int i = 0; i <= enemyList.childCount; i++)
+        {
+            enemyList.GetChild(i).GetComponent<EnemyController>().speed = 0;
+        }
 
     }
 }

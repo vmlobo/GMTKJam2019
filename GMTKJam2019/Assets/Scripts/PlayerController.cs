@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float hp = 100f;
     public float speed = 10f;
     public float bullet_speed = 20;
-    public float player_ammo = 6; //TODO display ammo
+    public float player_ammo = 6;
     public float playerImmuneTime = 3;
     private float immuneTime;
 
@@ -107,7 +107,6 @@ public class PlayerController : MonoBehaviour
             {
                 player_ammo++;
                 Destroy(ammoPickup);
-                Debug.Log("ammo: " + player_ammo);//TODO display ammo
             }
         }
 
@@ -123,7 +122,6 @@ public class PlayerController : MonoBehaviour
         gunshot.Play();
         ps.Play();
         player_ammo -= 1;
-        Debug.Log("ammo: " + player_ammo); //TODO display ammo
         Destroy(bullet, 2f);
         //TODO weapon sound
     }

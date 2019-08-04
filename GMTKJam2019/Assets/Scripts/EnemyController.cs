@@ -17,8 +17,6 @@ public class EnemyController : MonoBehaviour
     private CapsuleCollider2D capsuleCollider;
     private SpriteRenderer sr;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
