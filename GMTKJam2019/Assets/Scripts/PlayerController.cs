@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float hp = 100f;
     public float speed = 10f;
     public float bullet_speed = 20;
-    private float player_ammo = 6; //TODO display ammo
+    public float player_ammo = 6; //TODO display ammo
     public float playerImmuneTime = 3;
     private float immuneTime;
 
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem ps;
     private SpriteRenderer sr;
-    private Animator animator;
+    public Animator animator;
 
     public GameObject bulletPrefab;
 
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
             immuneTime -= Time.deltaTime; 
         }
         
-        if (Input.GetButtonDown("Fire1") && !ps.isPlaying && player_ammo > 0) //can player fire
+        if (Input.GetButtonDown("Fire1") && player_ammo > 0) //can player fire
             Fire();
 
         if (Input.GetButtonDown("Fire2"))
