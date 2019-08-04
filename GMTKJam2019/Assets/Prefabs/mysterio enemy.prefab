@@ -136,7 +136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   hp: 150
-  bulletPrefab: {fileID: 2427559232127754054}
+  bulletPrefab: {fileID: 2914728873179754195, guid: c2e9e06904dd10649863b89b45ca363a,
+    type: 3}
 --- !u!199 &2427559232127754077
 ParticleSystemRenderer:
   serializedVersion: 6
