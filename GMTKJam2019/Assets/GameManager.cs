@@ -22,12 +22,11 @@ public class GameManager : MonoBehaviour
     {
         if(player.hp <= 0)
         {
-            //TODO end game
+            //TODO end game (needs huds?)
         }
 
         if (spawner.alive == 0)
         {
-            //TODO handle new wave
             waveUpdate();
         }
 

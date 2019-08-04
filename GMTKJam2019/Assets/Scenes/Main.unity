@@ -358,6 +358,7 @@ MonoBehaviour:
   enemyList:
   - {fileID: 4391900206667747071, guid: 6dccaa6c2f5cff74dba6cddce825df1f, type: 3}
   - {fileID: 3935305956032310094, guid: 64ea695c1c5dc914a86b85bcd4db6393, type: 3}
+  - {fileID: 2427559232127754054, guid: c8a6fa9a1692c1f4db28f2273a052a04, type: 3}
   enemySpawner: {fileID: 53818119}
   alive: 0
 --- !u!1 &254327307
@@ -1087,7 +1088,7 @@ GameObject:
   - component: {fileID: 1986909665}
   - component: {fileID: 1986909664}
   - component: {fileID: 1986909663}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5998,7 +5999,7 @@ GameObject:
   - component: {fileID: 2106492722}
   - component: {fileID: 2106492724}
   - component: {fileID: 2106492723}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

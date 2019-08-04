@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
 
-    private Transform player;
     public float speed;
     public float hp = 50f;
     public GameObject bulletPrefab;
+
+    private Transform player;
 
     private ParticleSystem ps;
     private CapsuleCollider2D capsuleCollider;
@@ -32,8 +33,6 @@ public class EnemyController : MonoBehaviour
 
         if (collision.gameObject.tag == "bullet" && collision.gameObject.layer == 10)  //layer 10 is active bullets
         {
-            //when is bullet destroyed TODO
-            Debug.Log("bullet hit enemy");
             ps.Play();
             hp -= 50f;
             if (hp <= 0)
@@ -42,7 +41,8 @@ public class EnemyController : MonoBehaviour
                 {
                     GameObject newBullet;
                     collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                    newBullet = Instantiate(bulletPrefab,collision.gameObject.transform.position,gameObject.transform.rotation);
+                    newBullet = Instantiate(bulletPrefab,collision.gameObject.transform.position,gameObject.transform.rotation);//TODO fica smp de lado
+                    newBullet.transform.parent = GameObject.Find("bullet_pool").transform;
                     Destroy(collision.gameObject);
                 }
                 Destroy(gameObject); //TODO enemy death
