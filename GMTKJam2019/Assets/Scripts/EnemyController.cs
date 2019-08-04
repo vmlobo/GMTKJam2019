@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
 
     private ParticleSystem ps;
     private CapsuleCollider2D capsuleCollider;
-    public SpriteRenderer sr;
+    private SpriteRenderer sr;
 
 
 
@@ -21,7 +21,8 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
-        capsuleCollider = GetComponent<CapsuleCollider2D>(); 
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision) //se bullet for trigger tem que ser on trigger enter
@@ -41,16 +42,17 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector2.MoveTowards(transform.position,player.position,speed * Time.deltaTime);
+        if (!capsuleCollider.IsTouching(player.GetComponent<Collider2D>()))
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        
+   
+        
 
-        if (transform.position.x <player.position.x)
-        {
+        if (transform.position.x <player.position.x) //flip
             sr.flipX = true;
-        }
         else
-        {
             sr.flipX = false;
-        } 
+        
 
         if (hp <= 0)
         {

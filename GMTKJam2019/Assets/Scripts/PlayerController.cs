@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     public Transform weaponBarrel;
 
     public ParticleSystem ps;
-    public SpriteRenderer sr;
-    public Animator animator;
+    private SpriteRenderer sr;
+    private Animator animator;
 
     public GameObject bulletPrefab;
 
@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     {
         circleCollider = GetComponent<CircleCollider2D>();
         gunshot = GetComponent<AudioSource>();
+        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -67,18 +69,13 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("movingLeft", Input.GetAxis("Horizontal") < -0.01f);
 
         crosshair.position = new Vector3(mousePos.x, mousePos.y, -5);
-        weapon_transform.right = -(crosshair.position - weapon_transform.position); //-weapon barrel.pos TODO
+        weapon_transform.right = -(crosshair.position - weaponBarrel.position);
 
-        if (!movingRightTest && !idleTest)
+        if (Input.GetAxis("Horizontal") < -0.01f) //movingleft
             sr.flipX = true;
         else
             sr.flipX = false;
         
-        if(Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0f)
-        {
-            animator.StopPlayback();
-        }
-
         if (Input.GetButtonDown("Fire1") && !ps.isPlaying && player_ammo > 0)
         {
             Fire();

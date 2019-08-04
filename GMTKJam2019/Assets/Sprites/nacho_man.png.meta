@@ -8,6 +8,24 @@ TextureImporter:
   - first:
       213: 185540847915490311
     second: enemy_placeholder2_1
+  - first:
+      213: 1662163398307997938
+    second: enemy_placeholder2_2
+  - first:
+      213: -51059351354827921
+    second: enemy_placeholder2_3
+  - first:
+      213: -2465269325549267206
+    second: enemy_placeholder2_4
+  - first:
+      213: -1997421932817800260
+    second: enemy_placeholder2_5
+  - first:
+      213: -1776944979329518018
+    second: enemy_placeholder2_6
+  - first:
+      213: 3763974523973790821
+    second: enemy_placeholder2_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -108,6 +126,69 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac0e16d13684039459a1247f386c99ec
+      internalID: -2063854191139925088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_placeholder2_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e1a2c09423afd144bfa8573b489185f
+      internalID: 185540847915490311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_placeholder2_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed00b1c01e50a064183af8fc14e8c3ed
+      internalID: 1662163398307997938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_placeholder2_3
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 32
         width: 32
         height: 32
@@ -118,14 +199,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a79a8fa01fbf35f4e9017083d8faf787
-      internalID: -2063854191139925088
+      spriteID: 87e65713c491fc64480c272d42cd1886
+      internalID: -51059351354827921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_placeholder2_1
+      name: enemy_placeholder2_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9e4333360a8a8e4cbc4483916403edc
+      internalID: -2465269325549267206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_placeholder2_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e039d4540fbe984fa11771665d35eb8
+      internalID: -1997421932817800260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_placeholder2_6
       rect:
         serializedVersion: 2
         x: 0
@@ -139,8 +262,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89b64d0e7a120aa45a9fdba612256cb7
-      internalID: 185540847915490311
+      spriteID: d2019d4a5a32c444faf8445b934a7a9e
+      internalID: -1776944979329518018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_placeholder2_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf138b6b29ee7064e96636ae7b7a4ffd
+      internalID: 3763974523973790821
       vertices: []
       indices: 
       edges: []
