@@ -25,7 +25,6 @@ public class EnemySpawner : MonoBehaviour
         {
             int rnd = Random.Range(0, enemyList.Length);
             spawned = Instantiate(enemyList[rnd],  new Vector2(5 + player.transform.position.x, 5 + player.transform.position.y) + (Random.insideUnitCircle * spawnRadius), transform.rotation);
-
             spawned.transform.parent = enemySpawner;
         }
         alive = num;
