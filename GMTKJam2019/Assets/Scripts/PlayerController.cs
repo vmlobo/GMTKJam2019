@@ -50,19 +50,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) //handle colisao com ammo no chao
     {
-        Debug.Log(collision.gameObject);
-
         if (collision.gameObject.layer == 11)
         {
             canPickup = true;
-            ammoPickup = collision.gameObject; //TODO display ammo
+            ammoPickup = collision.gameObject; 
         }
 
         if (collision.transform.tag == "enemy" && immuneTime <= 0) 
         {
             //Debug.Log("ouch hp: " + hp);
             hp -= 50f;
-            immuneTime = playerImmuneTime;//TODO display immunity
+            immuneTime = playerImmuneTime;
+            Debug.Log("playerHP: " + hp);//TODO display immunity
         }
     }
 
@@ -91,8 +90,11 @@ public class PlayerController : MonoBehaviour
         else
             sr.flipX = false;
 
-        if (immuneTime > 0) //is player immune TODO display
-            immuneTime -= Time.deltaTime;
+        if (immuneTime > 0) //is player immune
+        {
+            Debug.Log("immune: " + immuneTime); // TODO display
+            immuneTime -= Time.deltaTime; 
+        }
         
         if (Input.GetButtonDown("Fire1") && !ps.isPlaying && player_ammo > 0) //can player fire
             Fire();
@@ -101,9 +103,9 @@ public class PlayerController : MonoBehaviour
         {
             if (canPickup)
             {
-                Debug.Log("player touching ammo");
-                player_ammo++; //TODO display ammo
+                player_ammo++;
                 Destroy(ammoPickup);
+                Debug.Log("ammo: " + player_ammo);//TODO display ammo
             }
         }
 
@@ -115,13 +117,13 @@ public class PlayerController : MonoBehaviour
         Vector3 shotDir = (crosshair.transform.position - weaponBarrel.position).normalized;
         GameObject bullet = Instantiate(bulletPrefab, new Vector3(weaponBarrel.position.x, weaponBarrel.position.y,3), Quaternion.FromToRotation(Vector3.right,shotDir));
         bullet.GetComponent<Rigidbody2D>().velocity = shotDir * bullet_speed; //* timedeltatime?
+        bullet.transform.parent = GameObject.Find("bullet_pool").transform;
         gunshot.Play();
         ps.Play();
         player_ammo -= 1;
+        Debug.Log("ammo: " + player_ammo); //TODO display ammo
         Destroy(bullet, 2f);
         //TODO weapon sound
-        //TODO bulletss colliding w player? should bullet be isTrigger
-        //TOOD wep in fronnt/side of the player
     }
 
 }
