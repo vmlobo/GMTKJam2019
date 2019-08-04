@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 6fdea55e983d5654ea4d126c70af6ce7
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Marston
+  fontNames:
+  - Marston
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 146cd5eb15d51924abce36e989bef5da, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
