@@ -93,7 +93,8 @@ public class PlayerController : MonoBehaviour
 
         if (immuneTime > 0) //is player immune
         {
-            Debug.Log("immune: " + immuneTime); // TODO display
+            Debug.Log("immune");
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, Mathf.Clamp(Mathf.Cos(10*immuneTime), 0.3f, 1f));
             immuneTime -= Time.deltaTime; 
         }
         
